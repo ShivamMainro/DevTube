@@ -1,0 +1,50 @@
+<sidenav class="minimize">
+  <div class="main">
+    <div class="channel-info">
+      <div class="img">
+        <img class="logo" src="<%= channel.logoURL %>" alt="logo">
+        <a href="/channel">
+          <svg viewBox="0 0 24 24">
+            <path fill="white" d="M21,21H3V3h9v1H4v16h16v-8h1V21z M15,3v1h4.32l-8.03,8.03L12,12.74l8-8V9h1V3H15z"></path>
+          </svg>
+        </a>
+      </div>
+      <div class="text">
+        <p class="label">Your channel </p>
+        <p class="name"><%= channel.name %></p>
+      </div>
+    </div>
+    <div class="sections">
+      <a href="/studio/channel/<%= channel.uid %>/content" class="btn" id="content">
+        <svg viewBox="0 0 24 24">
+          <path d="M11 6.99982V13.9998L17 10.4998L11 6.99982Z" class="outlined"></path>
+          <path d="M18 20.9998H3V5.99982H4V19.9998H18V20.9998ZM21 2.99982H6V17.9998H21V2.99982ZM7 3.99982H20V16.9998H7V3.99982Z" class="outlined"></path>
+          <path d="M4 5.99982H3V20.9998H18V19.9998H4V5.99982Z" class="filled"></path>
+          <path d="M6 2.99982V17.9998H21V2.99982H6ZM11 13.9998V6.99982L17 10.4998L11 13.9998Z" class="filled"></path>
+
+        </svg>
+        <span>Content</span>
+      </a>
+      <a href="/studio/channel/<%= channel.uid %>/analytics" class="btn" id="analytics">
+        <svg viewBox="0 0 24 24">
+          <path d="M10 18v-6l5 3-5 3zm7-15H7v1h10V3zm3 3H4v1h16V6zm2 3H2v12h20V9zM3 10h18v10H3V10z"></path>
+        </svg>
+        <span>Subscriptions</span>
+      </a>
+      <a href="/studio/channel/<%= channel.uid %>/comments" class="btn" id="comments">
+        <svg viewBox="0 0 24 24">
+          <path d="M8 7H16V9H8V7ZM8 13H13V11H8V13ZM5 3V16H15H15.41L15.7 16.29L19 19.59V3H5ZM4 2H20V22L15 17H4V2Z" class="outlined"></path>
+          <path d="M4 2V17H15L20 22V2H4ZM8 11H13V13H8V11ZM8 7H16V9H8V7Z" class="filled"></path>
+        </svg>
+        <span>Comments</span>
+      </a>
+      <a href="/studio/channel/<%= channel.uid %>/editing" class="btn" id="customization">
+        <svg viewBox="0 0 24 24">
+          <path d="M6.71 7.2L7.89 5.1L6.71 3L8.81 4.18L10.91 3L9.74 5.1L10.92 7.2L8.82 6.02L6.71 7.2ZM18.9 14.26L16.8 13.08L17.98 15.18L16.8 17.28L18.9 16.1L21 17.28L19.82 15.18L21 13.08L18.9 14.26ZM21 3L18.9 4.18L16.8 3L17.98 5.1L16.8 7.2L18.9 6.02L21 7.2L19.82 5.1L21 3ZM17.14 10.02L6.15 21L3 17.85L14 6.85L17.14 10.02ZM6.15 19.59L13.7 12.04L11.96 10.3L4.41 17.85L6.15 19.59Z" class="outlined"></path>
+          <path d="M8.81 6.03L10.91 7.21L9.74 5.1L10.91 3L8.81 4.18L6.71 3L7.89 5.1L6.71 7.2L8.81 6.03ZM18.9 14.26L16.8 13.08L17.98 15.18L16.8 17.28L18.9 16.1L21 17.28L19.82 15.18L21 13.08L18.9 14.26ZM21 3L18.9 4.18L16.8 3L17.98 5.1L16.8 7.2L18.9 6.02L21 7.2L19.82 5.1L21 3ZM17.14 10.02L14 6.85L3 17.85L6.15 21L17.14 10.02ZM13.72 12.06L11.94 10.28L13.99 8.23L15.77 10.01L13.72 12.06Z" class="filled"></path>
+        </svg>
+        <span>Customization</span>
+      </a>
+    </div>
+  </div>
+</sidenav>

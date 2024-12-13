@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Comments</title>
+  <link rel="stylesheet" href="/css/studio/pages/comments.css">
+  <style>
+    body {
+      background-color: #333;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+    .main-content {
+      width: 80%;
+      margin: auto;
+      padding: 20px;
+    }
+    .header h1 {
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #ddd;
+      color: #000;
+    }
+    th {
+      background-color: #e4e4e4;
+    }
+    .video-title{
+      color: #ddd;
+    }
+    .comment-text {
+      margin: 5px 0;
+      white-space: pre-wrap;
+      color: #ddd;
+    }
+    .comment-date {
+      font-size: 0.9em;
+      color: #ddd;
+    }
+    .loading {
+      display: none;
+      text-align: center;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-content">
+    <div class="header">
+      <h1>User Comments</h1>
+      <p>Here are all the comments made on videos posted by the user:</p>
+    </div>
+
+    <div class="loading" id="loading">Loading...</div>
+
+    <table id="comments-table">
+      <thead>
+        <tr>
+          <th>Video Title</th>
+          <th>Comment</th>
+          <th>Comment Date</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Function to load user comments
+    function loadUserComments() {
+      const loading = document.getElementById("loading");
+      const commentsTableBody = document.querySelector("#comments-table tbody");
+
+      loading.style.display = "block";  // Show loading spinner
+
+      // Fetch the comments data for the user
+      fetch(`/channel/videos/comments`)  // Adjust the endpoint to match your API
+        .then(response => response.json())
+        .then(data => {
+          loading.style.display = "none";
+
+          if (data && data.length > 0) {
+            data.forEach(comment => {
+              
+              const row = document.createElement("tr");
+
+              // Video Title Column
+              const videoTitleCell = document.createElement("td");
+              const videoTitle = document.createElement("p");
+              videoTitle.className = "video-title";
+              videoTitle.textContent = comment.video.title;
+              videoTitleCell.appendChild(videoTitle);
+              row.appendChild(videoTitleCell);
+
+              // Comment Text Column
+              const commentTextCell = document.createElement("td");
+              const commentText = document.createElement("p");
+              commentText.className = "comment-text";
+              commentText.textContent = comment.text;  // Comment text
+              commentTextCell.appendChild(commentText);
+              row.appendChild(commentTextCell);
+
+              // Comment Date Column
+              const commentDateCell = document.createElement("td");
+              const commentDate = document.createElement("span");
+              commentDate.className = "comment-date";
+              commentDate.textContent = new Date(comment.postedDate).toLocaleString();  // Format date
+              commentDateCell.appendChild(commentDate);
+              row.appendChild(commentDateCell);
+
+              commentsTableBody.appendChild(row);
+            });
+          } else {
+            commentsTableBody.innerHTML = "<tr><td style='color: #ddd' colspan='3'>No comments found.</td></tr>";
+          }
+        })
+        .catch(error => {
+          loading.style.display = "none";
+          console.error("Error fetching comments:", error);
+          commentsTableBody.innerHTML = "<tr><td colspan='3'>Error loading comments.</td></tr>";
+        });
+    }
+
+    window.onload = function() {
+      loadUserComments();
+    };
+  </script>
+</body>
+</html>

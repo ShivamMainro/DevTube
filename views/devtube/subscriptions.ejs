@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Subscriptions</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="main-content">
+    <h1>Your Subscriptions</h1>
+    <p>Here are all the channels you are subscribed to:</p>
+
+    <table id="subscriptions-table">
+      <thead>
+        <tr>
+          <th>Channel Handle</th>
+          <th>Channel Logo</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Subscription rows will be dynamically populated here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Fetch subscriptions data when the page loads
+    document.addEventListener('DOMContentLoaded', async function() {
+      try {
+        // Fetch the subscription data from the server
+        const response = await fetch('/subscriptions/subscriptions');
+        const subscriptions = await response.json();
+
+        // Get the table body element
+        const tbody = document.querySelector('#subscriptions-table tbody');
+
+        // Clear any existing content in the table body
+        tbody.innerHTML = '';
+
+        // Loop through the subscriptions and add rows to the table
+        subscriptions.forEach(subscription => {
+          const row = document.createElement('tr');
+          
+          // Channel Handle
+          const handleCell = document.createElement('td');
+          handleCell.textContent = subscription.channel.handle;
+          row.appendChild(handleCell);
+
+          // Channel Logo
+          const logoCell = document.createElement('td');
+          const logoImg = document.createElement('img');
+          logoImg.src = subscription.channel.logoURL;  // Assuming the logoURL is correct
+          logoImg.alt = `${subscription.channel.handle} Logo`;
+          logoImg.width = 50;
+          logoCell.appendChild(logoImg);
+          row.appendChild(logoCell);
+
+          // Channel Description
+          const descriptionCell = document.createElement('td');
+          descriptionCell.textContent = subscription.channel.description;
+          row.appendChild(descriptionCell);
+
+          // Append the row to the table body
+          tbody.appendChild(row);
+        });
+      } catch (error) {
+        console.error('Error fetching subscriptions:', error);
+      }
+    });
+  </script>
+</body>
+</html>

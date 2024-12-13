@@ -1,0 +1,40 @@
+.comments-section {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.comment {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+.comment-text {
+    font-size: 14px;
+    color: #333;
+}
+
+.comment-user {
+    font-size: 12px;
+    color: #555;
+}
+
+.comment-likes {
+    font-size: 12px;
+    color: #888;
+}
+
+.view-comments-btn {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.view-comments-btn:hover {
+    background-color: #0056b3;
+}
